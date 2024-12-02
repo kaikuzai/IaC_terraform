@@ -1,8 +1,12 @@
 # Local .terraform directories
 **/.terraform/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 ./.terraform/*
 /modules/*/.terraform
+=======
+.terraform/* 
+>>>>>>> 56c109f (rebase)
 =======
 .terraform/* 
 >>>>>>> 56c109f (rebase)
