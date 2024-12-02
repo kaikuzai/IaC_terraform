@@ -15,3 +15,14 @@ jobs:
             # Retrieve vars from env 
             - name: Retrieve env variables 
               uses: actions/checkout@v3
+
+
+            - name: Setup Terraform
+              uses: hashicorp/setup-terraform@v2
+              with:
+                terraform_version: ${{secrets.TERRAFORM_VERSION}}
+
+            - name: Check Version
+              run: terraform --version 
+            
+
