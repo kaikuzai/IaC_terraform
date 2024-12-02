@@ -1,7 +1,11 @@
 # Local .terraform directories
 **/.terraform/*
+<<<<<<< HEAD
 ./.terraform/*
 /modules/*/.terraform
+=======
+.terraform/* 
+>>>>>>> 56c109f (rebase)
 
 # .tfstate files
 *.tfstate
