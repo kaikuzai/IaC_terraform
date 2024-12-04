@@ -28,6 +28,9 @@ jobs:
               with:
                 terraform_version: ${{secrets.TERRAFORM_VERSION}}
              
+
+            - name: Terraform Init 
+              run: terraform init    
             # Destroy resources
             - name: Destroy resources
               run: terraform destroy -auto-approve 
