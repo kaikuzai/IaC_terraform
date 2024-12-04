@@ -3,14 +3,32 @@ resource "aws_lb" "load_balancer" {
   name               = "default-load-balancer"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [] # security group id 
+  security_groups    = [aws_security_group.load_balancer-sg.id] # security group id 
   subnets            = [for subnet_id in var.public_subnet : subnet_id.id]
 
   tags = {
     Name = "Default application load balancer"
   }
 
+  depends_on = [aws_lb_target_group.load_balancer_target_group]
 }
+
+# Set up Load Balancer Security Group
+resource "aws_security_group" "load_balancer-sg" {
+  name   = "aws-lb-sg"
+  vpc_id = var.VPC_id
+}
+
+resource "aws_vpc_security_group_ingress_rule" "tcp-ingress" {
+  security_group_id = aws_security_group.load_balancer-sg.id
+  ip_protocol       = "tcp"
+  from_port         = 80
+  to_port           = 80
+
+  cidr_ipv4 = "80.115.85.185/32"
+}
+
+
 
 # Target group and attachment 
 resource "aws_lb_target_group" "load_balancer_target_group" {
